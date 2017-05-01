@@ -1,0 +1,25 @@
+{
+  "name": "notes_app",
+  "description": "Combination of diary and sticky notes",
+  "main": "",
+  "keywords": [
+    "diary",
+    "notes",
+    "organizer"
+  ],
+  "authors": [
+    "miretz"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
