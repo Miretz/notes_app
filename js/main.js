@@ -135,52 +135,59 @@ function scrollTo(days) {
 
 function addNoteBottom() {
   window.offset_bottom = window.offset_bottom + 1;
-  $('#container').append(createSection(getDate(window.offset_bottom)));
+  window.container.append(createSection(getDate(window.offset_bottom)));
 }
 
 
 function addNoteTop() {
   window.offset_top = window.offset_top - 1;
-  $('#container').prepend(createSection(getDate(window.offset_top)));
+  window.container.prepend(createSection(getDate(window.offset_top)));
 }
 
 
 function initializeNotes() {
   for (var i = window.offset_top; i < window.offset_bottom; i++) {
-    var date = getDate(i);
-    $('#container').append(createSection(date));
+    window.container.append(createSection(getDate(i)));
   }
 }
 
 
 function scrollListener() {
-  if ($(window).scrollTop() >= $(document).height() - $(window).height() - 100) {
+  var st = $(window).scrollTop();
+  if (st >= $(document).height() - $(window).height() - 100) {
     addNoteBottom();
   }
-  if ($(window).scrollTop() !== window.previousScroll && $(window).scrollTop() <= 100) {
-    var pos = $('#container').first().offset().top;
+  if (st !== window.previousScroll && st <= 100) {
+    var pos = window.container.first().offset().top;
     addNoteTop();
     $('html, body').scrollTop(pos + 100);
-    window.previousScroll = $(window).scrollTop();
+    window.previousScroll = st;
   }
 }
 
 
-$(document).ready(function() {
+(function($, window, document) {
 
-  window.offset_top = -10;
-  window.offset_bottom = 10;
+  $(function() {
 
-  //initialization
-  initializeNotes();
-  initializeLinks();
+    window.offset_top = -10;
+    window.offset_bottom = 10;
 
-  window.previousScroll = $(window).scrollTop();
+    //cache the container object
+    window.container = $('#container');
 
-  //scroll to the current day and start the listener
-  $('html, body').animate({
-    scrollTop: $("#" + getDate(0).id).offset().top - 200
-  }, 1000, function() {
-    $(window).bind("scroll", scrollListener);
+    //initialization
+    initializeNotes();
+    initializeLinks();
+
+    window.previousScroll = $(window).scrollTop();
+
+    //scroll to the current day and start the listener
+    $('html, body').animate({
+      scrollTop: $("#" + getDate(0).id).offset().top - 200
+    }, 1000, function() {
+      $(window).bind("scroll", scrollListener);
+    });
+
   });
-});
+}(window.jQuery, window, document));
