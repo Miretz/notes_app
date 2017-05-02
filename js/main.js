@@ -17,6 +17,11 @@ var WEEKDAYS = [
 function getDate(offset) {
   var d = new Date();
   d.setDate(d.getDate() + offset);
+  return buildDateObject(d, offset);
+}
+
+
+function buildDateObject(d, offset){
   var n = WEEKDAYS[d.getDay()];
   var weekend = d.getDay() === 6 || d.getDay() === 0;
   return {
@@ -166,28 +171,23 @@ function scrollListener() {
 }
 
 
-(function($, window, document) {
+function initMain() {
+  window.offset_top = -10;
+  window.offset_bottom = 10;
 
-  $(function() {
+  //cache the container object
+  window.container = $('#container');
 
-    window.offset_top = -10;
-    window.offset_bottom = 10;
+  //initialization
+  initializeNotes();
+  initializeLinks();
 
-    //cache the container object
-    window.container = $('#container');
+  window.previousScroll = $(window).scrollTop();
 
-    //initialization
-    initializeNotes();
-    initializeLinks();
-
-    window.previousScroll = $(window).scrollTop();
-
-    //scroll to the current day and start the listener
-    $('html, body').animate({
-      scrollTop: $("#" + getDate(0).id).offset().top - 200
-    }, 1000, function() {
-      $(window).bind("scroll", scrollListener);
-    });
-
+  //scroll to the current day and start the listener
+  $('html, body').animate({
+    scrollTop: $("#" + getDate(0).id).offset().top - 200
+  }, 1000, function() {
+    $(window).bind("scroll", scrollListener);
   });
-}(window.jQuery, window, document));
+}
