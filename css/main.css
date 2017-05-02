@@ -7,3 +7,12 @@
 textarea {
   font-size: 17px;
 }
+
+.panel-sticky > .panel-heading {
+  background-color: #ccc;
+}
+
+.padded {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}

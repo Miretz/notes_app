@@ -1,40 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>NotesApp</title>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <title>NotesApp</title>
 
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <script src="js/main.js"></script>
-  </head>
-  <body>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
 
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">NotesApp</a>
-        </div>
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#" id="today-link">Today</a></li>
-          <li><a href="#" id="lw-link">Last Week</a></li>
-          <li><a href="#" id="nw-link">Next Week</a></li>
-          <li><a href="#" id="lm-link">Last Month</a></li>
-          <li><a href="#" id="nm-link">Next Month</a></li>
-        </ul>
+  <script src="js/main.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">NotesApp</a>
       </div>
-    </nav>
-
-    <div class="container-fluid" id="container">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#" id="today-link">Today</a></li>
+        <li><a href="#" id="lw-link">Last Week</a></li>
+        <li><a href="#" id="nw-link">Next Week</a></li>
+        <li><a href="#" id="lm-link">Last Month</a></li>
+        <li><a href="#" id="nm-link">Next Month</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-floppy-disk"></span> Save</a></li>
+      </ul>
     </div>
+  </nav>
+
+  <div class="container-fluid" id="container">
+  </div>
+
+  <nav class="navbar navbar-default navbar-fixed-bottom padded">
+    <div class="container-fluid">
+      <div class="panel panel-default panel-sticky" id="note_sticky">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+      <a data-toggle="collapse" href="#collapse_note_sticky">Sticky Note</a>
+      </h3>
+        </div>
+        <div id="collapse_note_sticky" class="panel-collapse collapse">
+          <div class="panel-body">
+            <textarea class="form-control no-border" id="text_note_sticky" style="min-width: 100%">
+      </textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</body>
 
 
-  </body>
+
 </html>
