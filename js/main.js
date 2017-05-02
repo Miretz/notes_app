@@ -26,6 +26,7 @@ function getDate(offset) {
     "text": d.toLocaleDateString("sk") + ' - ' + n,
     "is_current": offset === 0,
     "start_of_month": d.getDate() === 1,
+    "start_of_week": d.getDay() === 1
   };
 }
 
@@ -40,18 +41,18 @@ function getWeekOfYear(date) {
 function getNoteHeader(date) {
   var header = '';
   if (date.start_of_month) {
-    header = '<hr /><h2>' + MONTHS[date.date.getMonth()] + '</h2>';
+    header += '<hr /><h2>' + MONTHS[date.date.getMonth()] + '</h2>';
   }
-  if (date.date.getDay() === 1) {
-    header = '<hr /><p>Week ' + getWeekOfYear(date) + '</p>';
+  if (date.start_of_week) {
+    header += '<hr /><p>Week ' + getWeekOfYear(date) + '</p>';
   }
+  return header;
 }
 
 
 function getPanelClass(date) {
   var panel_class = date.weekend ? "panel-default" : "panel-info";
-  panel_class = date.is_current ? "panel-primary" : panel_class;
-  return panel_class;
+  return date.is_current ? "panel-primary" : panel_class;
 }
 
 
