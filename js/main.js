@@ -154,17 +154,15 @@ function initializeNotes() {
 
 
 function scrollListener() {
-  $(window).bind("scroll", function() {
-    if ($(window).scrollTop() >= $(document).height() - $(window).height() - 100) {
-      addNoteBottom();
-    }
-    if ($(window).scrollTop() !== window.previousScroll && $(window).scrollTop() <= 100) {
-      var pos = $('#container').first().offset().top;
-      addNoteTop();
-      $('html, body').scrollTop(pos + 100);
-      window.previousScroll = $(window).scrollTop();
-    }
-  });
+  if ($(window).scrollTop() >= $(document).height() - $(window).height() - 100) {
+    addNoteBottom();
+  }
+  if ($(window).scrollTop() !== window.previousScroll && $(window).scrollTop() <= 100) {
+    var pos = $('#container').first().offset().top;
+    addNoteTop();
+    $('html, body').scrollTop(pos + 100);
+    window.previousScroll = $(window).scrollTop();
+  }
 }
 
 
@@ -183,6 +181,6 @@ $(document).ready(function() {
   $('html, body').animate({
     scrollTop: $("#" + getDate(0).id).offset().top - 200
   }, 1000, function() {
-    scrollListener();
+    $(window).bind("scroll", scrollListener);
   });
 });
